@@ -23,7 +23,7 @@ class SatPlatAPI:
         LAI = "LAI"
         NDWI = "NDWI"
 
-    def __init__(self, verify_ssl=False):
+    def __init__(self, verify_ssl=True):
         self.client = requests.Session()
         if not verify_ssl:
             self.client.verify = verify_ssl

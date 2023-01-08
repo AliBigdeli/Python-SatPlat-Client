@@ -3,7 +3,7 @@ from pprint import pprint
 import os
 
 
-client = SatPlatAPI(verify_ssl=True)
+client = SatPlatAPI()
 client.set_access_token(
     access_token=os.environ['ACCESS_TOKEN'])
 pprint(client.get_farms_list())
