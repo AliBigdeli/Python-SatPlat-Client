@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://satplat.com/" target="_blank"> <img src="./docs/satplat-logo.png" width=300 /> </a>
+<a href="https://satplat.com/" target="_blank"> <img src="https://user-images.githubusercontent.com/29748439/211309040-f338a8c8-2617-455d-bcae-0727eceb622a.png" width=300 /> </a>
 
 </div>
 
@@ -73,5 +73,5 @@ pprint(client.get_farms_list())
 i even did create a custom swagger for testing purposes
 
 <div align="center">
-<img src="./docs/swagger-demo.png"/>
+<img src="https://user-images.githubusercontent.com/29748439/211308445-95044159-842d-4e13-ba1d-a345e84785da.png"/>
 </div>
