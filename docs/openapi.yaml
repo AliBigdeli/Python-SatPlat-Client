@@ -1,0 +1,427 @@
+openapi: 3.0.3
+info:
+  title: SatPlat - OpenAPI 3.0
+  description: |-
+   This is a simple API documentation for user access in SatPlat
+    
+    Some useful links:
+    - [SatPlat Website](https://satplat.com/)
+
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: bigdeli.ali3@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://api.satplat.com/api/v1/legal-customers/
+tags:
+  - name: Farm
+    description: Farm CRUD endpoints
+
+paths:
+  /farms/:
+    get:
+      tags:
+        - Farm
+      summary: list all farms 
+      description: Multiple status values can be provided with comma separated strings
+      operationId: AllFarms
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+  /add-farm/:
+    post:
+      tags:
+        - Farm
+      summary: list all farms
+      description: createing a farm inside the api provider
+      operationId: CreateFarm
+      requestBody:
+        description: Create a new farm
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Farm'
+        required: true
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+        '400':
+          description: Invalid input
+  
+  /farms/{farm_uuid}/:
+    get:
+      tags:
+        - Farm
+      summary: detail of the farm
+      description: Multiple status values can be provided with comma separated strings
+      operationId: DetailFarm
+      parameters:
+        - name: farm_uuid
+          in: path
+          description: ID of farm to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+  /process/:
+    post:
+      tags:
+        - Process
+      summary: process a farm
+      description: processing a farm inside the api provider
+      operationId: ProcessFarm
+      requestBody:
+        description: Process a farm
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Process'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessRes'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvalidError'  
+
+  /index/{farm_uuid}/{filename}/{index}/:
+    get:
+      tags:
+        - Index
+      summary: getting image index
+      description: getting image index based on filename index and farm_id index can be (NDVI - NDRE - CHL - LAI - NDWI)
+      operationId: IndexData
+      parameters:
+        - name: farm_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: index
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+  /index-image/{farm_uuid}/{filename}/{index}/:
+    get:
+      tags:
+        - Index-Image
+      summary: getting image index
+      description: getting image index based on filename index and farm_id index can be (NDVI - NDRE - CHL - LAI - NDWI)
+      operationId: IndexImage
+      parameters:
+        - name: farm_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: index
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+  /rgb/{farm_uuid}/{filename}/:
+    get:
+      tags:
+        - RGB-Image
+      summary: getting image index
+      description: getting image index based on filename index and farm_id index can be (NDVI - NDRE - CHL - LAI - NDWI)
+      operationId: RGBImage
+      parameters:
+        - name: farm_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+
+
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+  /time-series/{farm_uuid}/{index}/:
+    get:
+      tags:
+        - Time-Series
+      summary: getting image index
+      description: getting time series data based on index and farm_id index can be (NDVI - NDRE - CHL - LAI - NDWI)
+      operationId: TimeSeries
+      parameters:
+        - name: farm_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: index
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Farm'  
+        '403':
+          description: credentials not provided sample
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnauthorizedError'  
+
+
+components:
+  schemas:
+    Farm:
+      required:
+        - name
+        - polygon
+      type: object
+      properties:
+        id:
+          type: string
+          example: 01ac51b2-1ceb-4e10-94fc-39049d6beea7
+          readOnly: true
+        name:
+          type: string
+          example: farm
+        polygon:
+          type: string
+          example: |
+            POLYGON((49.957856312993826 36.24472893791254,50.05649220749003 36.24554758214524,50.05733365552625 36.17542666218372,49.9587856905065 36.17461010438765,49.957856312993826 36.24472893791254))
+        
+        area:
+          type: number
+          example: 6913
+
+    Process:
+      required:
+        - farm_id
+        - start_date
+        - end_date
+      type: object
+      properties:
+        farm_id:
+          type: string
+          example: 01ac51b2-1ceb-4e10-94fc-39049d6beea7
+        
+        start_date:
+          type: string
+          example: '2022-11-01'
+        
+        end_date:
+          type: string
+          example: '2022-12-01'
+          
+    ProcessRes:
+      required:
+        - farm_id
+        - start_date
+        - end_date
+      type: object
+      properties:
+        id:
+          type: string
+          example: 631b2b43-5bf3-47c4-a895-980ca3b27a2c
+
+        farm:
+          type: string
+          example: ff83c4d2-6ecb-4f6f-8862-e414244658d1
+        
+        file_name:
+          type: string
+          example: S2B_MSIL2A_20221128T072239_N0400_R006_T39SUA_20221128T085020
+        
+        date:
+          type: string
+          example: '2022-11-28'
+
+        
+   
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      type: object
+      properties:
+        type:
+          type: string
+          example: authentication_error
+        
+        code:
+          type: string
+          example: authentication_failed
+        
+        detail:
+          type: string
+          example: API token not provided
+        
+        attr:
+          type: string
+          example: null
+      
+    InvalidError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: error message
+        
+        code:
+          type: integer
+          example: 1
+
+        
+        
+      
+  requestBodies:
+    Farm:
+      description: farm object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Farm'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Farm'
+            
+    
+  
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: Authorization  # name of the header, query parameter or cookie
+      
+      
+security:
+  - ApiKeyAuth: []  

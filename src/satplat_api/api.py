@@ -38,20 +38,17 @@ class SatPlatAPI:
     @Authentication.is_authenticated
     def get_farms_list(self):
         url = f"{self.api_base_url}/legal-customers/farms/"
-        response = self.client.get(url)
-        return response
+        return self.client.get(url)
 
     @Authentication.is_authenticated
     def get_farm_detail(self, id):
         url = f"{self.api_base_url}/legal-customers/farms/{id}/"
-        response = self.client.get(url)
-        return response
+        return self.client.get(url)
 
     @Authentication.is_authenticated
     def delete_farm(self, id):
         url = f"{self.api_base_url}/legal-customers/farms/{id}/"
-        response = self.client.delete(url)
-        return response
+        return self.client.delete(url)
 
     @Authentication.is_authenticated
     def add_farm(self, name, polygon):
@@ -60,8 +57,7 @@ class SatPlatAPI:
             "name": name,
             "polygon": polygon
         }
-        response = self.client.post(url, data=data)
-        return response
+        return self.client.post(url, data=data)
 
     @Authentication.is_authenticated
     def process_farm(self, farm_id, start_date, end_date):
@@ -71,29 +67,25 @@ class SatPlatAPI:
             "start_date": start_date,
             "end_date": end_date,
         }
-        response = self.client.post(url, data=data)
-        return response
+        return self.client.post(url, data=data)
 
     @Authentication.is_authenticated
     def get_farm_index(self, farm_id, filename, index):
         # 5
         url = f"{self.api_base_url}/legal-customers/index/{farm_id}/{filename}/{index}/"
-        response = self.client.get(url)
-        return response
+        return self.client.get(url)
 
     @Authentication.is_authenticated
     def get_farm_index_image(self, farm_id, filename, index):
         # 6
         url = f"{self.api_base_url}/legal-customers/index-image/{farm_id}/{filename}/{index}/"
-        response = self.client.get(url)
-        return response
+        return self.client.get(url)
 
     @Authentication.is_authenticated
     def get_farm_rgb_image(self, farm_id, filename):
         # 7
         url = f"{self.api_base_url}/legal-customers/rgb/{farm_id}/{filename}/"
-        response = self.client.get(url)
-        return response
+        return self.client.get(url)
 
     @Authentication.is_authenticated
     def get_farm_time_series(self, farm_id, index, start_date, end_date):
@@ -104,8 +96,7 @@ class SatPlatAPI:
             "end_date": end_date
 
         }
-        response = self.client.get(url, params=params)
-        return response
+        return self.client.get(url, params=params)
 
 
 
