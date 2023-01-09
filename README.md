@@ -12,6 +12,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [References](#references)
+- [Swagger](#swagger)
 
 # Installation
 This module is a pip package to let you integrate with satplat api service provider. in order to use this module you have to install it by pip command or through setup.
@@ -66,3 +67,11 @@ pprint(client.get_farms_list())
 # References
 
 - <a href="./docs/satplat-api-document.pdf">document</a>
+
+
+# Swagger
+i even did create a custom swagger for testing purposes
+
+<div align="center">
+<img src="./docs/swagger-demo.png"/>
+</div>
